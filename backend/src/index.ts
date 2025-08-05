@@ -148,7 +148,9 @@ app.post("/api/agents", middleware, async (req: AuthenticatedRequest, res) => {
 
     await prisma.chat.createMany({
       data: [
+        // @ts-ignore - added by middleware
         { userId, role: "user", message: question },
+        // @ts-ignore - added by middleware
         { userId, role: "assistant", message: answer },
       ],
     });

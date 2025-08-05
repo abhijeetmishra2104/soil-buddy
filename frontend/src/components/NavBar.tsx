@@ -10,7 +10,7 @@ export const NavBar = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Leaf className="h-8 w-8 text-green-600" />
-              <span className="text-xl font-bold text-green-800">SoilCare</span>
+              <span className="text-xl font-bold text-green-800">SoilBuddy</span>
             </div>
             <div className="hidden md:flex space-x-6">
                 <div className="flex flex-col justify-center items-center">
@@ -29,6 +29,11 @@ export const NavBar = () => {
                     </Link>
                 </div>
               <ChatButton/>
+              <div className="flex flex-col justify-center items-center">
+                    <Link href="/signin" className="text-green-700 hover:text-green-900 font-medium">
+                        Sign In
+                    </Link>
+                </div>
             </div>
           </div>
         </div>

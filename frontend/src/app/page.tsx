@@ -159,7 +159,7 @@ export default function HomePage() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Leaf className="h-8 w-8" />
-                <span className="text-xl font-bold">SoilCare</span>
+                <span className="text-xl font-bold">SoilBuddy</span>
               </div>
               <p className="text-green-200 text-lg leading-relaxed">
                 Making soil health accessible and fun for everyone! 🌱
@@ -199,7 +199,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-green-700 mt-8 pt-8 text-center">
-            <p className="text-green-200 text-lg">© 2025 SoilCare. Made with 💚 for our planet.</p>
+            <p className="text-green-200 text-lg">© 2025 SoilBuddy. Made with 💚 for our planet.</p>
           </div>
         </div>
       </footer>

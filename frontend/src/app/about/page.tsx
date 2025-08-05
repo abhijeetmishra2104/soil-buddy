@@ -71,7 +71,7 @@ export default function AboutPage() {
         <div
           className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-6">About SoilCare 🌍</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-6">About SoilBuddy 🌍</h1>
           <p className="text-xl text-green-700 leading-relaxed max-w-4xl mx-auto">
             We believe everyone—young and old—can learn how to protect our soil and environment. Our mission is to make
             soil health accessible, fun, and meaningful for all! 🌱
@@ -214,7 +214,7 @@ export default function AboutPage() {
                 <Mail className="h-6 w-6 text-green-600" />
                 <div>
                   <p className="text-green-800 font-medium">Questions or suggestions?</p>
-                  <p className="text-green-600">hello@soilcare.com</p>
+                  <p className="text-green-600">hello@soilbuddy.com</p>
                 </div>
               </div>
             </CardContent>

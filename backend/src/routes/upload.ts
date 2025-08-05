@@ -4,6 +4,8 @@ import { v2 as cloudinary } from "cloudinary";
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import fs from "fs";
+import axios from "axios";
+import FormData from "form-data";
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -21,29 +23,42 @@ router.post("/image", upload.single("file"), async (req, res) => {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
+    const localFilePath = req.file.path;
+
     // 1️⃣ Upload to Cloudinary
-    const result = await cloudinary.uploader.upload(req.file.path, {
+    const result = await cloudinary.uploader.upload(localFilePath, {
       folder: "soil-buddy",
     });
 
-    // 2️⃣ Delete temp file
-    fs.unlink(req.file.path, (err) => {
-      if (err) console.error("Failed to delete temp file:", err);
-    });
+    // 2️⃣ Send to Streamlit ML backend
+    const form = new FormData();
+    form.append("file", fs.createReadStream(localFilePath));
 
-    // 3️⃣ Create chat with image
+    const mlResponse = await axios.post(
+      "https://your-streamlit-backend.onrender.com/predict", // Replace with actual endpoint
+      form,
+      {
+        headers: form.getHeaders(),
+      }
+    );
+
+    // ❌ Skip deleting the file
+
+    // 3️⃣ Save to database
     const chat = await prisma.chat.create({
       data: {
-        role: "user", // ✅ lowercase to match Prisma enum
+        role: "user",
         message: "",
         image: [result.secure_url],
-        // @ts-ignore - added by middleware
+        // @ts-ignore
         userId: req.userId as string,
       },
     });
 
     res.status(200).json({
-      url: result.secure_url,
+      cloudinaryUrl: result.secure_url,
+      mlPrediction: mlResponse.data,
+      localFilePath: localFilePath, // optionally return this
       chat,
     });
   } catch (error: any) {
