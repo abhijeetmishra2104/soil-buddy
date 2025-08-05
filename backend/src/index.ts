@@ -22,6 +22,8 @@ type ChatMessage = OpenAI.Chat.Completions.ChatCompletionMessageParam;
 app.post("/sign-up", async (req, res) => {
   const parsedData = CreateUserSchema.safeParse(req.body);
 
+  console.log("Sign up hit");
+  
   if (!parsedData.success) {
     return res.status(409).json({ message: "Incorrect inputs" });
   }

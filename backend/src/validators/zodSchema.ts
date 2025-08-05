@@ -8,14 +8,14 @@ export const CreateUserSchema = z.object({
     .max(100, { message: "User name too long!" }),
   password: z
     .string()
-    .min(8, { message: "Password must be at least 8 characters!" }),
+    .min(1, { message: "Password must be at least 1 characters!" }),
 });
 
 export const SignInSchema = z.object({
   email: z.string().email(),
   password: z
     .string()
-    .min(8, { message: "Password must be at least 8 characters!" }),
+    .min(1, { message: "Password must be at least 1 characters!" }),
 });
 
 export const chatSchema = z.object({
