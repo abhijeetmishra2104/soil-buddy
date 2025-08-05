@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/middleware.ts","./src/validators/zodSchema.ts"],"version":"5.9.2"}
+{"root":["./src/index.ts","./src/middleware.ts","./src/routes/upload.ts","./src/validators/zodSchema.ts"],"version":"5.9.2"}

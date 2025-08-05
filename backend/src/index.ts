@@ -6,9 +6,12 @@ import { CreateUserSchema, SignInSchema } from "./validators/zodSchema.js";
 import jwt from "jsonwebtoken";
 import { middleware } from "./middleware.js";
 import OpenAI from "openai";
+import uploadRouter from "./routes/upload.js";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const prisma = new PrismaClient();
 
@@ -120,6 +123,10 @@ app.post("/api/agents", middleware, async (req, res) => {
     message: "Open ai called!",
   });
 });
+
+app.use("/upload", middleware, uploadRouter);
+
+app.post("/chat", middleware, (req, res) => {});
 
 const PORT = process.env.PORT || 3000;
 
