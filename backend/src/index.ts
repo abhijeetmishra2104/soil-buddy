@@ -6,9 +6,12 @@ import { CreateUserSchema, SignInSchema } from "./validators/zodSchema.js";
 import jwt from "jsonwebtoken";
 import { middleware } from "./middleware.js";
 import OpenAI from "openai";
+import uploadRouter from "./routes/upload.js";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const prisma = new PrismaClient();
 
@@ -119,6 +122,35 @@ app.post("/api/agents", middleware, async (req, res) => {
   res.status(200).json({
     message: "Open ai called!",
   });
+});
+
+app.use("/upload", middleware, uploadRouter);
+
+app.get("/chat", middleware, async (req, res) => {
+  try {
+    // @ts-ignore - userId set by middleware
+    const userId = req.userId as string;
+
+    const chats = await prisma.chat.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        createdAt: "asc", 
+      },
+    });
+
+    res.status(200).json({
+      message: "Chats fetched successfully",
+      chats,
+    });
+  } catch (error: any) {
+    console.error("Error fetching chats:", error);
+    res.status(500).json({
+      message: "Failed to fetch chats",
+      error: error.message,
+    });
+  }
 });
 
 const PORT = process.env.PORT || 3000;
