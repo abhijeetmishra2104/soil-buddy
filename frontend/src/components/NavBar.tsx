@@ -30,7 +30,7 @@ export const NavBar = () => {
                 </div>
               <ChatButton/>
               <div className="flex flex-col justify-center items-center">
-                    <Link href="/signin" className="text-green-700 hover:text-green-900 font-medium">
+                    <Link href="/sign-in" className="text-green-700 hover:text-green-900 font-medium">
                         Sign In
                     </Link>
                 </div>

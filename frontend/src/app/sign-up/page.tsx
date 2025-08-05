@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sprout } from "lucide-react";
+import { NavBar } from "@/src/components/NavBar";
 
 interface SignUpResponse {
   userid: string;
@@ -45,6 +46,8 @@ export default function SignUpPage() {
   };
 
   return (
+    <>
+    <NavBar />
     <div className="flex min-h-screen items-center justify-center bg-background text-foreground px-4">
       <Card className="w-full max-w-md shadow-lg border border-border bg-card">
         <CardContent className="p-8">
@@ -107,5 +110,6 @@ export default function SignUpPage() {
         </CardContent>
       </Card>
     </div>
+    </>
   );
 }
