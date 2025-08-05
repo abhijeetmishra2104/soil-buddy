@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "../components/ui/button"
 import { Card, CardContent } from "../components/ui/card"
 import { Camera, MessageCircle, Leaf, Sprout, TreePine, Users } from "lucide-react"
+import { NavBar } from "../components/NavBar"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -16,30 +17,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100">
       {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-sm border-b border-green-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <Leaf className="h-8 w-8 text-green-600" />
-              <span className="text-xl font-bold text-green-800">SoilCare</span>
-            </div>
-            <div className="hidden md:flex space-x-6">
-              <Link href="/" className="text-green-700 hover:text-green-900 font-medium">
-                Home
-              </Link>
-              <Link href="/learn" className="text-green-700 hover:text-green-900 font-medium">
-                Learn
-              </Link>
-              <Link href="/about" className="text-green-700 hover:text-green-900 font-medium">
-                About
-              </Link>
-              <Link href="/chat" className="text-green-700 hover:text-green-900 font-medium">
-                Chat
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavBar/>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-4">
