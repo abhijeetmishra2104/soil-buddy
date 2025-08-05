@@ -4,6 +4,8 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { CreateUserSchema, SignInSchema } from "./validators/zodSchema.js";
 import jwt from "jsonwebtoken";
+import { middleware } from "./middleware.js";
+import OpenAI from "openai";
 
 const app = express();
 app.use(express.json());
@@ -104,6 +106,19 @@ app.post("/sign-in", async (req, res) => {
       message: "Something went wrong. Please try again!",
     });
   }
+});
+
+app.post("/api/agents", middleware, async (req, res) => {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error("OPENAI_API_KEY is not defined in environment variables.");
+  }
+
+  const client = new OpenAI();
+
+  res.status(200).json({
+    message: "Open ai called!",
+  });
 });
 
 const PORT = process.env.PORT || 3000;

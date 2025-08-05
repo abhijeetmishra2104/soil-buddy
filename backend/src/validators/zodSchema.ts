@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const CreateUserSchema = z.object({
-  email: z.email(),
+  email: z.string().email(),
   name: z
     .string()
     .min(1, { message: "User name is required!" })
@@ -12,7 +12,7 @@ export const CreateUserSchema = z.object({
 });
 
 export const SignInSchema = z.object({
-  email: z.email(),
+  email: z.string().email(),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters!" }),
