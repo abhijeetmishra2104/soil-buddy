@@ -8,6 +8,7 @@ import Link from "next/link"
 import { Button } from "../../components/ui/button"
 import { Card, CardContent } from "../../components/ui/card"
 import { Upload, Camera, ArrowLeft, ImageIcon, CheckCircle } from "lucide-react"
+import Image from "next/image"
 
 export default function UploadPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
@@ -187,7 +188,7 @@ export default function UploadPage() {
                 </div>
 
                 <div className="relative">
-                  <img
+                  <Image
                     src={previewUrl! || "/placeholder.svg"}
                     alt="Soil sample preview"
                     className="w-full max-w-md mx-auto rounded-2xl shadow-lg"

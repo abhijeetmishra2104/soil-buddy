@@ -17,7 +17,7 @@ export default function ResultsPage() {
   const soilData = {
     type: "Loamy Soil",
     description:
-      "Your soil is loamy - that's fantastic! Loamy soil is considered the best type for most plants because it has a perfect balance of sand, silt, and clay.",
+      "Your soil is loamy - That&apos;s fantastic! Loamy soil is considered the best type for most plants because it has a perfect balance of sand, silt, and clay.",
     ph: 6.8,
     moisture: "Good",
     nutrients: "Rich",

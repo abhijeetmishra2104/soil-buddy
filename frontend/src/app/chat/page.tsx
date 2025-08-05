@@ -49,7 +49,7 @@ export default function ChatPage() {
     compost:
       "Compost is like a superfood smoothie for your soil! 🥤 It's made from decomposed organic materials like food scraps and leaves. It adds nutrients and helps soil hold water better!",
     default:
-      "That's a great question! 🤔 Soil health involves many factors like nutrients, pH, moisture, and beneficial organisms. Would you like to know more about any specific aspect?",
+      "That&apos;s a great question! 🤔 Soil health involves many factors like nutrients, pH, moisture, and beneficial organisms. Would you like to know more about any specific aspect?",
   }
 
   useEffect(() => {

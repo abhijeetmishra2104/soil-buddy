@@ -47,6 +47,7 @@ router.post("/image", upload.single("file"), async (req, res) => {
     // 3️⃣ Save to database
     const chat = await prisma.chat.create({
       data: {
+        // @ts-ignore
         role: "user",
         message: "",
         image: [result.secure_url],

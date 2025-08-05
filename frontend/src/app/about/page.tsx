@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "../../components/ui/button"
 import { Card, CardContent } from "../../components/ui/card"
 import { ArrowLeft, Heart, Users, Target, MessageCircle, Mail, Leaf } from "lucide-react"
+import Image from "next/image"
 
 export default function AboutPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -130,7 +131,7 @@ export default function AboutPage() {
                 className="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 <CardContent className="p-8 text-center">
-                  <img
+                  <Image
                     src={member.avatar || "/placeholder.svg"}
                     alt={`${member.name} - ${member.role}`}
                     className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-green-200"
