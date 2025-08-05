@@ -35,15 +35,37 @@ export default function UploadPage() {
   }
 
   const handleSubmit = async () => {
-    if (!selectedFile) return
+  if (!selectedFile) return
 
-    setIsAnalyzing(true)
-    // Simulate analysis time
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+  setIsAnalyzing(true)
 
-    // Navigate to results page
-    router.push("/results")
+  const formData = new FormData()
+  formData.append("file", selectedFile)
+
+  try {
+    const response = await fetch("http://localhost:3002/upload", {
+      method: "POST",
+      body: formData,
+    })
+
+    if (!response.ok) {
+      throw new Error("Failed to upload image")
+    }
+
+    const data = await response.json()
+
+    console.log("Image uploaded to Cloudinary:", data.url)
+
+    // You can store the returned URL in DB or pass it to another page
+    router.push("/results") // You can also pass data.url as a query param if needed
+  } catch (error) {
+    console.error("Upload error:", error)
+    alert("Failed to analyze the soil. Please try again.")
+  } finally {
+    setIsAnalyzing(false)
   }
+}
+
 
   const handleReset = () => {
     setSelectedFile(null)

@@ -22,14 +22,15 @@ const AnimatedBorderButton: React.FC<AnimatedBorderButtonProps> = ({ children, h
 
 export default AnimatedBorderButton;
 
+
 const ButtonWrapper = styled.span`
   position: relative;
   display: inline-block;
   padding: 4px;
   border-radius: 9999px;
-  background: linear-gradient(45deg, #4CAF50, #8BC34A, #CDDC39, #379683, #56ab2f);
+  background: linear-gradient(45deg, #932F67, #E43636, #B4E50D, #F37199, #093FB4, #102E50);
   background-size: 300% 300%;
-  animation: borderSpin 6s linear infinite;
+  animation: borderSpin 4s linear infinite;
 
   @keyframes borderSpin {
     0% {
@@ -42,7 +43,20 @@ const ButtonWrapper = styled.span`
       background-position: 0% 50%;
     }
   }
-`;
+
+  // Create inner layer for masking the content
+  & > span {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    background-color: white; // or your button background
+    color: black;
+    font-weight: 600;
+    z-index: 1;
+    position: relative;
+  }
+`
+
 
 const StyledLink = styled(Link)`
   display: inline-block;

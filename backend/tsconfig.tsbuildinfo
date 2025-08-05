@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-{"root":["./src/index.ts","./src/middleware.ts","./src/validators/zodschema.ts"],"version":"5.9.2"}
-=======
-{"root":["./src/index.ts","./src/middleware.ts","./src/routes/upload.ts","./src/validators/zodSchema.ts"],"version":"5.9.2"}
->>>>>>> 3534c53d76844a18faa8a41bf1458968368ba383
