@@ -21,23 +21,23 @@ router.post("/image", upload.single("file"), async (req, res) => {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    // Upload to Cloudinary
+    // 1️⃣ Upload to Cloudinary
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: "soil-buddy",
     });
 
-    // Delete temp file
+    // 2️⃣ Delete temp file
     fs.unlink(req.file.path, (err) => {
       if (err) console.error("Failed to delete temp file:", err);
     });
 
-    // Create new chat message with image
+    // 3️⃣ Create chat with image
     const chat = await prisma.chat.create({
       data: {
-        role: "User",
+        role: "user", // ✅ lowercase to match Prisma enum
         message: "",
         image: [result.secure_url],
-        //@ts-ignore
+        // @ts-ignore - added by middleware
         userId: req.userId as string,
       },
     });

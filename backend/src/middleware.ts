@@ -1,19 +1,36 @@
 import type { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { type JwtPayload } from "jsonwebtoken";
 
-export function middleware(req: Request, res: Response, next: NextFunction) {
-  const token = req.headers["authorization"] ?? "";
-  const JWT_SECRET = process.env.JWT_SECRET || "";
+export interface AuthenticatedRequest extends Request {
+  userId?: string;
+}
 
-  const decoded = jwt.verify(token, JWT_SECRET);
+const JWT_SECRET = process.env.JWT_SECRET || "";
 
-  if (decoded) {
-    //@ts-ignore 
-    req.userId = decoded.userId;
+export function middleware(
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const token = req.headers.authorization; 
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Unauthorized - No token provided" });
+    }
+
+    const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload | string;
+
+    if (typeof decoded === "string" || !decoded.userId) {
+      return res.status(403).json({ message: "Unauthorized - Invalid token" });
+    }
+
+    req.userId = decoded.userId as string;
     next();
-  } else {
-    res.status(403).json({
-      message: "Unauthorized",
-    });
+  } catch (err) {
+    console.error("Auth Error:", err);
+    res.status(403).json({ message: "Unauthorized" });
   }
 }
